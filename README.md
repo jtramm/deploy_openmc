@@ -43,6 +43,21 @@ module load openmc/YYYY.MM.DD.V
 
 ## Notes on Creating Subsequent Modules
 
+- The script is setup to be run again without modification to generate new versions, without overwriting old installs.
+
+- For example, you run the scripts and make a new versioned module in the morning. It will have a name like openmc/2023.09.07.0 You develop a new branch of the code with some optimizations, so want to generate a new module and compare it to the old one. You can simply go into the code/openmc folder and checkout the new branch, then navigate back up to the main directory and run all the scripts again (assuming you don't want to make any changes to compiler settings or environment settings) as:
+
+```
+source ./1_create_module.sh
+source ./2_deploy_module.sh
+./3_compile.sh
+./4_deploy_install.sh
+```
+
+This new module will have a name like openmc/2023.09.07.1, and you can easily load/unload to switch betwen the two modules as desired.
+
 - Scenario: You are trying to compile on Frontier, and copy the "frontier" base module file to "my_frontier" and set it to use a specific compiler. You follow the steps, but found that OpenMC fails to compile. In this case, you can edit the "my_frontier" base file to use a different compiler or set of modules, and then begin running through the steps again starting with source "./1_create_module.sh". In this scenario, a new module version ID will NOT be generated, rather, the original ID files will be overwritten. This is by design, as the scripts will not generate a new version ID until "./4_deploy_install.sh" is run which actually creates a versioned file in the installs directory (which governs the version ID generation). However, a new version will be generated if time goes by and the date command returns a subsequent day.
 
 - Scenario: You are trying to compile on Frontier, and copy the "frontier" base module file to "my_frontier" and set it to use a specific compiler. You follow the steps, and OpenMC compiles successfully, but then crashes when running. In this case, you can edit the "my_frontier" base file to use a different compiler or set of modules, and then begin running through the steps again starting with source "./1_create_module.sh". In this scenario, a new module version ID WILL be generated.
+
+- To delete a module, you would just need to delete it's folders: installs/YYYY.MM.DD.V and modulefiles/deployed_modulefiles/openmc/YYYY.MM.DD.V. However, be warned that the version ID generation script operates by detecting how many folders are there with the same YYYY.MM.DD tag, so may potentially overwrite a module if e.g., there are 3 modules for a given day and you delete the 2nd module, then try to generate a new one. This is not a problem though if you are generating a new module for a different day.
