@@ -19,4 +19,4 @@ sed -i 's@DEPLOY_OPENMC_HOME@'"$DEPLOY_OPENMC_HOME"'@g' $MODFILE
 sed -i 's@DEPLOY_OPENMC_VID@'"$DEPLOY_OPENMC_VID"'@g' $MODFILE
 
 echo "Loading new module file: openmc/$DEPLOY_OPENMC_VID"
-module use openmc/"$DEPLOY_OPENMC_VID"
+module load openmc/"$DEPLOY_OPENMC_VID"

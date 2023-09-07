@@ -23,4 +23,4 @@ DEPLOY_OPENMC_VID+=$PREV_INSTALLS
 echo "Generating new openmc module version: $DEPLOY_OPENMC_VID"
 export DEPLOY_OPENMC_HOME=$(pwd)
 export DEPLOY_OPENMC_VID
-module use ${DEPLOY_OPENMC_HOME}/deployed_modulefiles
+module use ${DEPLOY_OPENMC_HOME}/modulefiles/deployed_modulefiles
