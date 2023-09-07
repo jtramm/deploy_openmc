@@ -1,0 +1,27 @@
+#%Module
+
+proc ModulesHelp { } {
+   puts stderr "This module adds OpenMC to your path"
+}
+
+module-whatis "This module adds OpenMC to your path\n"
+
+#####################################################################
+# Setup Compiler Environment
+#####################################################################
+module load llvm/master-nightly
+module load rocm/5.4.3
+
+#####################################################################
+# Setup OpenMC Environment
+#####################################################################
+set openmc_basedir ${DEPLOY_OPENMC_HOME}/installs/${DEPLOY_OPENMC_VID}
+prepend-path PATH "${openmc_basedir}/bin"
+prepend-path LD_LIBRARY_PATH "${openmc_basedir}/lib64"
+prepend-path LIBRARY_PATH "${openmc_basedir}/lib64"
+prepend-path OPENMC_CROSS_SECTIONS "${DEPLOY_OPENMC_HOME}/data/endfb-vii.1-hdf5/cross_sections.xml"
+prepend-path OpenMC_ROOT "${openmc_basedir}"
+
+module load spack
+module load hdf5
+module load cmake
