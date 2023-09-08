@@ -12,7 +12,6 @@ module-whatis "This module adds OpenMC to your path\n"
 
 set OMP_TARGET_OFFLOAD "MANDATORY"
 set IGC_ForceOCLSIMDWidth "16"
-unset LIBOMPTARGET_LEVEL_ZERO_COMMAND_BATCH
 set LIBOMPTARGET_LEVEL_ZERO_USE_IMMEDIATE_COMMAND_LIST "1"
 set CFESingleSliceDispatchCCSMode "1"
 set LIBOMPTARGET_DEVICES "SUBSUBDEVICE"
@@ -20,7 +19,6 @@ set LIBOMPTARGET_DEVICES "SUBSUBDEVICE"
 set TZ "/usr/share/zoneinfo/US/Central"
 set OMP_PROC_BIND "spread"
 set OMP_NUM_THREADS "1"
-unset OMP_PLACES
 
 module load intel_compute_runtime/release/agama-devel-555
 
@@ -34,6 +32,7 @@ prepend-path LIBRARY_PATH "${openmc_basedir}/lib64"
 prepend-path OPENMC_CROSS_SECTIONS "DEPLOY_OPENMC_HOME/data/endfb-vii.1-hdf5/cross_sections.xml"
 prepend-path OpenMC_ROOT "${openmc_basedir}"
 
+module use /soft/modulefiles
 module load spack-pe-gcc/0.4-rc1
 module load cmake
 module load cray-hdf5/1.12.2.3
