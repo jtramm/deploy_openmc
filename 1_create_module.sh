@@ -6,7 +6,7 @@
 # to base their environment off of. Recommend to copy one of the files
 # into a new file, customize it, and then point this variable to their
 # new customized modulefile
-export BASE_MODULE=generic_a100
+export BASE_MODULE=aurora
 
 # Ensure this script is being sourced
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]
