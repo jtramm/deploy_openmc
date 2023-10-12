@@ -1,5 +1,5 @@
 #!/bin/bash
 set -x
-wget https://anl.box.com/shared/static/9igk353zpy8fn9ttvtrqgzvw1vtejoz6.xz
-tar -xf 9igk353zpy8fn9ttvtrqgzvw1vtejoz6.xz
-rm 9igk353zpy8fn9ttvtrqgzvw1vtejoz6.xz
+wget https://anl.box.com/shared/static/mru2pt591sdvlml7vwn8oof5ppv0l0kf.tgz
+tar -xzvf mru2pt591sdvlml7vwn8oof5ppv0l0kf.tgz
+rm mru2pt591sdvlml7vwn8oof5ppv0l0kf.tgz

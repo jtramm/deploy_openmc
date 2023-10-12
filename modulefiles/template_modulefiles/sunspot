@@ -10,18 +10,17 @@ module-whatis "This module adds OpenMC to your path\n"
 # Setup Compiler Environment
 #####################################################################
 
-set basedir "/sw/frontier/ums/ums012/llvm/18.0.0-20230825"
-prepend-path PATH "${basedir}/bin"
-prepend-path LD_LIBRARY_PATH "${basedir}/lib"
-setenv MPICH_FC "${basedir}/bin/flang-new"
-setenv  MPICH_CC "${basedir}/bin/clang"
-setenv MPICH_CXX "${basedir}/bin/clang++"
+set OMP_TARGET_OFFLOAD "MANDATORY"
+set IGC_ForceOCLSIMDWidth "16"
+set LIBOMPTARGET_LEVEL_ZERO_USE_IMMEDIATE_COMMAND_LIST "1"
+set CFESingleSliceDispatchCCSMode "1"
+set LIBOMPTARGET_DEVICES "SUBSUBDEVICE"
 
-module load rocm/5.4.3
-module load ums ums012
+set TZ "/usr/share/zoneinfo/US/Central"
+set OMP_PROC_BIND "spread"
+set OMP_NUM_THREADS "1"
 
-module load PrgEnv-cray/8.3.3
-module load cray-mpich/8.1.26
+#module load intel_compute_runtime/release/agama-devel-555
 
 #####################################################################
 # Setup OpenMC Environment
@@ -33,5 +32,7 @@ prepend-path LIBRARY_PATH "${openmc_basedir}/lib64"
 prepend-path OPENMC_CROSS_SECTIONS "DEPLOY_OPENMC_HOME/data/endfb-vii.1-hdf5/cross_sections.xml"
 prepend-path OpenMC_ROOT "${openmc_basedir}"
 
-module load hdf5/1.14.0
-module load cmake/3.23.2
+module load oneapi/eng-compiler/2023.05.15.006
+module load spack
+module load cmake
+module load cray-hdf5/1.12.2.1
